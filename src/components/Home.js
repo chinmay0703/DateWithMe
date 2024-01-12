@@ -36,7 +36,7 @@ function Home() {
     };
 
     return (
-        <div className='home-container'>
+        <div className='home-container container'>
 
             <div className='container-fluid'>
                 {showtext ? (
@@ -69,7 +69,8 @@ function Home() {
             {showPopup && (
                 <div>
 
-                    <h5>Lets Fix a Date</h5>
+                    <h5></h5>
+                    <button className='btn btn-danger'>Lets Fix a Date</button>
                 </div>
             )}
 
