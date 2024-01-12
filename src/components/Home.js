@@ -1,11 +1,20 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import Confetti from 'react-confetti';
 import pic from "../images/gifss.gif";
+import pic2 from "../images/dancingbunny.gif";
 import "../components/Home.css";
 
 function Home() {
     const noButtonRef = useRef(null);
     const yesButtonRef = useRef(null);
     const popupRef = useRef(null);
+
+    const [showConfetti, setShowConfetti] = useState(false);
+    const [showSecondImage, setShowSecondImage] = useState(false);
+    const [showButtons, setShowButtons] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
+
+    const [showtext, setShowtext] = useState(false);
 
     const handleNoButtonHover = () => {
         const noButton = noButtonRef.current;
@@ -15,22 +24,38 @@ function Home() {
     };
 
     const handleYesButtonClick = () => {
-        const popup = popupRef.current;
-        popup.style.display = "block";
+        setShowButtons(false);
+        setShowConfetti(true);
+        setShowSecondImage(true);
+        setShowPopup(true);
+        setShowtext(true);
     };
 
     const handlePopupClick = () => {
-        const popup = popupRef.current;
-        popup.style.display = "none";
+        setShowPopup(false);
     };
 
     return (
-        <div className=''>
-            <div className="container ">
-                <h1>Will you come on a date with me?</h1>
-                <div className='container-fluid'>
+        <div className='home-container'>
+
+            <div className='container-fluid'>
+                {showtext ? (
+                     <h1>yeyyyyyy !! Finally</h1>
+                    
+                ) : (
+                    <h1>Will you come on a date with me?</h1>
+                )}
+            </div>
+           
+            <div className='container-fluid'>
+                {showSecondImage ? (
+                    <img src={pic2} className='img-fluid mx-auto' alt='Second Image'></img>
+                ) : (
                     <img src={pic} className='img-fluid mx-auto' alt='Responsive GIF'></img>
-                </div>
+                )}
+            </div>
+
+            {showButtons && (
                 <div className="buttons">
                     <button id="no-btn" ref={noButtonRef} onMouseOver={handleNoButtonHover}>
                         No
@@ -39,10 +64,16 @@ function Home() {
                         Yes
                     </button>
                 </div>
-                <div className="popup" id="popup" ref={popupRef} onClick={handlePopupClick}>
-                    <p>Aww, thank you!</p>
+            )}
+
+            {showPopup && (
+                <div>
+
+                    <h5>Lets Fix a Date</h5>
                 </div>
-            </div>
+            )}
+
+            {showConfetti && <Confetti />}
         </div>
     );
 }

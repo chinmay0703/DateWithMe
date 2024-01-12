@@ -51,6 +51,12 @@ h1 {
     color: #e91e63; /* Romantic color for the heading */
 }
 
+h5 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #867dad; /* Romantic color for the heading */
+}
+
 .buttons {
     margin: 20px;
 }
@@ -97,4 +103,9 @@ button:hover {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+body{
 
+        overflow-x: hidden;
+    
+    
+}
